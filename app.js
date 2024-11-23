@@ -6,12 +6,9 @@ const port = 3001;
 
 
 app.use(cors());
-// Replace with your actual FRED API key
-const API_KEY = 'b5012636c81dde3475ff4c99dba14ec9';
-const BASE_URL = 'https://api.stlouisfed.org/fred/series/observations';
 
 // Fetch data from FRED API
-async function fetchFredData(seriesId) {
+async function fetchFredData( API_KEY,BASE_URL , seriesId) {
   try {
     const url = `${BASE_URL}?series_id=${seriesId}&api_key=${API_KEY}&file_type=json`;
     const response = await axios.get(url);
