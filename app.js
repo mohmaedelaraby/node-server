@@ -2,13 +2,18 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
+require('dotenv').config(); // Load environment variables from .env
+
 const port = 3001;
 
+// Access environment variables
+const API_KEY = process.env.FRED_API_KEY;
+const BASE_URL = process.env.FRED_BASE_URL;
 
 app.use(cors());
 
 // Fetch data from FRED API
-async function fetchFredData( API_KEY,BASE_URL , seriesId) {
+async function fetchFredData( seriesId) {
   try {
     const url = `${BASE_URL}?series_id=${seriesId}&api_key=${API_KEY}&file_type=json`;
     const response = await axios.get(url);
